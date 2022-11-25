@@ -1,24 +1,35 @@
-from ursina  import *  
+from ursina import *
+# añadir un jugador primera persona
+from ursina.prefabs.first_person_controller import FirstPersonController
 
-#Class
 
-class Cubo (Entity):
-    def __init__(self):
+class Voxel(Button):
+    def __init__(self, position=(0, 0, 0,)):
         super().__init__(
-        model='cube',
-        color= color.white,
-        
+            parent=scene,
+            position=position,
+            model='cube',
+            origin_y=0.5,
+            texture='white_cube',
+            color=color.white,
+            height_color=color.lime
         )
 
-#Movimiento
-def update():
-    if held_keys ['a']:
-        cuadrado.x -= 2 * time.dt  
+    def input(self, key):
+        if self.hovered:
+            if key == 'left mouse down':
+                voxel = Voxel(position = self.position)
+            if key  == 'right mouse down':
+                destroy(self)
 
-#Estamos importado Ursin
+
 app = Ursina()
 
-cuadrado  = Entity(model='quad',color = color.red,scale=(1,4),position=(5,4))
+for z in range(20):
+    for x in range(20):
+        voxel = Voxel(position=(x, 0, z))
+
+player = FirstPersonController()
 
 
 app.run()
