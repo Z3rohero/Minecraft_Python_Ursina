@@ -10,7 +10,7 @@ textura_tierra = load_texture('assets/dirt_block.png')
 textureCielo= load_texture('assets/skybox.png')
 textura_arma= load_texture('assets/arm_texture.png')
 sonido = Audio('assets/punch_sound',loop = False, autoplay= False )
-lock_presionado = 1
+block_presionado = 1
 
 
 def update():
